@@ -1,20 +1,23 @@
 {
   "name": "ts-hashconsing",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Hashconsing library for TypeScript",
   "type": "module",
   "scripts": {
     "build": "npx tsc --build",
-    "tests": "npx jest"
+    "tests": "npx jest",
+    "postinstall": "npm run build"
   },
   "author": "HATTORI, Hiroki <seagull.kamome@gmail.com> (https://github.com/seagull-kamome",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "@types/jest": "^26.0.19",
     "@types/node": "^14.14.12",
-    "jest": "^26.6.3",
-    "ts-jest": "^26.4.4",
     "typescript": "^4.1.2"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "ts-jest": "^26.4.4"
   },
 
   "jest": {
