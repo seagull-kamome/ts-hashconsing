@@ -14,7 +14,7 @@ const PRIM = 1097;
 export type HC<T extends object> = { __hcid: number } & T;
 
 
-function hash(x:any, lvl:number=1): number {
+export function hash(x:any, lvl:number=1): number {
   // FIXME: I need good hash.
   switch (typeof x) {
     case 'number': return x;
@@ -61,61 +61,5 @@ export function intern<T extends object>(x: T) : HC<T> {
     return y as HC<T>;
   }
 }
-
-  /*
-console.log(hash(1));
-console.log(hash("abc"));
-console.log(hash({ foo: 'abc', bar: 'def' }));
-console.log(hash([5,4,3,2,1]));
-console.log(hash({ a: 1, b: 'abc', c: [5,6,7] }));
-
-
-const x1 = intern({ a: 1, b: 'abc', c: [5,6,7] });
-const x2 = intern({ a: 2, b: 'abc', c: [5,6,7] });
-const x3 = intern({ a: 1, b: 'aba', c: [5,6,7] });
-const x4 = intern({ a: 1, b: 'aba', c: [5,8,7] });
-
-console.log(x1);
-console.log(x2);
-console.log(x3);
-console.log(x4);
-
-
-const x5 = intern({ a: 1, b: 'abc', d: x1 });
-const x6 = intern({ a: 2, b: 'abc', d: x1 });
-const x7 = intern({ a: 1, b: 'abc', d: x3 });
-const x8 = intern({ a: 1, b: 'abc', d: x4 });
-
-console.log(x5);
-console.log(x6);
-console.log(x7);
-console.log(x8);
-
-
-const x1_ = intern({ a: 1, b: 'abc', c: [5,6,7] });
-const x2_ = intern({ a: 2, b: 'abc', c: [5,6,7] });
-const x3_ = intern({ a: 1, b: 'aba', c: [5,6,7] });
-const x4_ = intern({ a: 1, b: 'aba', c: [5,8,7] });
-
-console.log(x1_ === x1);
-console.log(x2_ === x2);
-console.log(x3_ === x3);
-console.log(x4_ === x4);
-
-
-
-const x5_ = intern({ a: 1, b: 'abc', d: x1_ });
-const x6_ = intern({ a: 2, b: 'abc', d: x1_ });
-const x7_ = intern({ a: 1, b: 'abc', d: x3_ });
-const x8_ = intern({ a: 1, b: 'abc', d: x4_ });
-
-console.log(x5_ === x5);
-console.log(x6_ === x6);
-console.log(x7_ === x7);
-console.log(x8_ === x8);
-
-
-console.log(store);
-   */
 
 // : vim ts=8 sw=2 tw=80 noexpandtab :
