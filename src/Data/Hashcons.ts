@@ -17,6 +17,7 @@ export type HC<T extends object> = { __hcid: number } & T;
 export function hash(x:any, lvl:number=1): number {
   // FIXME: I need good hash.
   switch (typeof x) {
+    case 'undefined': return 13;
     case 'number': return x;
     case 'string':
       {
@@ -26,6 +27,7 @@ export function hash(x:any, lvl:number=1): number {
       }
     case 'boolean': return x?(lvl+1):lvl;
     case 'object':
+      if (x === null) return 11;
       return (Array.isArray(x))? x.reduce(((acc:number, y:any) => acc + hash(y, lvl + PRIM)), 0)
         : ('__hcid' in x)? x.__hcid * lvl
         : Object.values(x).reduce(((acc:number, y:any) => acc + hash(y, lvl * PRIM)), 0);
@@ -38,6 +40,7 @@ function compare(lhs:any, rhs:any) : boolean {
     (k in rhs
       && (v === rhs[k]
         || (typeof v === 'object' && typeof rhs[k] === 'object'
+          && v !== null && rhs[k] !== null
           && ((!!v.__hcid && v.__hcid == rhs[k].__hcid) || compare(v, rhs[k])) ))) ); }
 
 
